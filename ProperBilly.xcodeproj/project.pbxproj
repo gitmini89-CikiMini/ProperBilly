@@ -16,6 +16,16 @@
 			path = ProperBilly;
 			sourceTree = "<group>";
 		};
+		3D8C017E2EB25A4A00E51B4A /* ConceptScreenshots */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ConceptScreenshots;
+			sourceTree = "<group>";
+		};
+		3D8C018B2EB25AF200E51B4A /* ConceptDocumentation */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ConceptDocumentation;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +42,8 @@
 		3D8C01672EB2572D00E51B4A = {
 			isa = PBXGroup;
 			children = (
+				3D8C018B2EB25AF200E51B4A /* ConceptDocumentation */,
+				3D8C017E2EB25A4A00E51B4A /* ConceptScreenshots */,
 				3D8C01722EB2572D00E51B4A /* ProperBilly */,
 				3D8C01712EB2572D00E51B4A /* Products */,
 			);
@@ -62,6 +74,8 @@
 			);
 			fileSystemSynchronizedGroups = (
 				3D8C01722EB2572D00E51B4A /* ProperBilly */,
+				3D8C017E2EB25A4A00E51B4A /* ConceptScreenshots */,
+				3D8C018B2EB25AF200E51B4A /* ConceptDocumentation */,
 			);
 			name = ProperBilly;
 			packageProductDependencies = (
