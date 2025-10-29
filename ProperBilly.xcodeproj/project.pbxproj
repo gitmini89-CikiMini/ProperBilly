@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		3D8C018F2EB25DB600E51B4A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3D8C018E2EB25DB600E51B4A /* LICENSE */; };
+		3D8C01BD2EB2605C00E51B4A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3D8C01BC2EB2605C00E51B4A /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3D8C01702EB2572D00E51B4A /* ProperBilly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProperBilly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8C018E2EB25DB600E51B4A /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3D8C01BC2EB2605C00E51B4A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +54,7 @@
 				3D8C01722EB2572D00E51B4A /* ProperBilly */,
 				3D8C01712EB2572D00E51B4A /* Products */,
 				3D8C018E2EB25DB600E51B4A /* LICENSE */,
+				3D8C01BC2EB2605C00E51B4A /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D8C01BD2EB2605C00E51B4A /* README.md in Resources */,
 				3D8C018F2EB25DB600E51B4A /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
