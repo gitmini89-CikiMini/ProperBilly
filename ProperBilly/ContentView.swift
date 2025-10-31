@@ -1,21 +1,18 @@
 //
-//  ContentView.swift
+//  SwiftUIView.swift
 //  ProperBilly
 //
-//  Created by Mi Ni on 29/10/2025.
+//  Created by Mi Ni on 31/10/2025.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct SwiftUIView: View {
     var body: some View {
-        VStack {
-            Text("ProperBilly")
-        }
-        .padding()
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    ContentView()
+    SwiftUIView()
 }
