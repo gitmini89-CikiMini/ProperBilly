@@ -20,12 +20,6 @@ struct MainView: View {
                     NavigationLink {
                         AddPropertyView(
                             propertyImage: Image(systemName: "house"),
-                            //propertyName: "",
-                            //propertyAddressStreet: "",
-                           // propertyAddressHouseNumber: "",
-                           // propertyAddressFlatNumber: nil,
-                            //propertyAddressPostalCode: "",
-                           // propertyAddressCity: ""
                         )
                     } label: {
                         Image(systemName: "plus")

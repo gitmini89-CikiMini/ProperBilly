@@ -59,8 +59,9 @@ struct AddPropertyView: View {
                                 propertySymbol = symbol
                             } label: {
                                 Image(systemName: symbol)
+                                    .font(.title)
                                     .foregroundStyle(propertyColor)
-                                    .frame(width: 50, height: 50)
+                                    .frame(width: 70, height: 70)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 10)
                                             .strokeBorder(
@@ -100,6 +101,7 @@ struct AddPropertyView: View {
                     }
                     .padding(.vertical, 4)
                 }
+                .scrollBounceBehavior(.basedOnSize)
                 
                 
             }
@@ -113,8 +115,7 @@ struct AddPropertyView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Zapisz") {
-                    // Zapisz dane, a następnie wróć:
-                    // Tutaj możesz wykorzystać `propertyColor` jako wybrany kolor.
+                    // Some code
                     dismiss()
                 }
             }
