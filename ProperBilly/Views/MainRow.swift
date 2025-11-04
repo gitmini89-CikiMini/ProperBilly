@@ -52,14 +52,16 @@ struct MainRow: View {
                     
                     Spacer()
                     
-                    Text(propertyAddressLine_1)
-                        .font(.subheadline)
-                        .foregroundStyle(.black)
-                        .bold()
-                    Text(propertyAddressLine_2)
-                        .font(.subheadline)
-                        .foregroundStyle(.black)
-                        .bold()
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(propertyAddressLine_1)
+                            .font(.subheadline)
+                            .foregroundStyle(.black)
+                            .bold()
+                        Text(propertyAddressLine_2)
+                            .font(.subheadline)
+                            .foregroundStyle(.black)
+                            .bold()
+                    }
                 }
                 .frame(maxHeight: 120, alignment: .leading)
                 .padding()
