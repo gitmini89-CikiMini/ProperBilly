@@ -9,7 +9,28 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List {
+                
+            }
+            .navigationTitle("ProperBilly")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItemGroup {
+                    Button {
+                        // Add action here
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                    
+                    Button {
+                        // Add action here
+                    } label: {
+                        Image(systemName: "ellipsis")
+                    }
+                }
+            }
+        }
     }
 }
 
