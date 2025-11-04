@@ -17,8 +17,16 @@ struct MainView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup {
-                    Button {
-                        // Add action here
+                    NavigationLink {
+                        AddPropertyView(
+                            propertyImage: Image(systemName: "house"),
+                            //propertyName: "",
+                            //propertyAddressStreet: "",
+                           // propertyAddressHouseNumber: "",
+                           // propertyAddressFlatNumber: nil,
+                            //propertyAddressPostalCode: "",
+                           // propertyAddressCity: ""
+                        )
                     } label: {
                         Image(systemName: "plus")
                     }
