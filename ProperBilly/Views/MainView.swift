@@ -18,9 +18,7 @@ struct MainView: View {
             .toolbar {
                 ToolbarItemGroup {
                     NavigationLink {
-                        AddPropertyView(
-                            propertyImage: Image(systemName: "house"),
-                        )
+                        AddPropertyView()
                     } label: {
                         Image(systemName: "plus")
                     }
