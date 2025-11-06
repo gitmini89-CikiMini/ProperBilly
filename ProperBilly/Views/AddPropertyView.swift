@@ -10,92 +10,75 @@ import SwiftUI
 struct AddPropertyView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    
+    @Bindable var vm: AddPropertyViewModel
 
-    //let propertyImage: Image?
-    @State private var propertyName = ""
-    @State private var propertyType = "Mieszkanie"
-    @State private var propertyAddressStreet = ""
-    @State private var propertyAddressHouseNumber = ""
-    @State private var propertyAddressFlatNumber = ""
-    @State private var propertyAddressPostalCode = ""
-    @State private var propertyAddressCity = ""
-    
-    let propertyTypes = ["Dom", "Mieszkanie", "Garaż", "Komórka lokatorska"]
-    
-    // Colors
-    @State private var colorSelection: PropertyColor = .orange
-    private var propertyColor: Color { colorSelection.color }
-    
-    @State private var propertySymbol = "house.fill"
-    private let propertySymbols = ["house.fill", "house.lodge.fill", "door.right.hand.closed", "sofa.fill", "door.garage.closed", "car.side.fill"]
-    
     var body: some View {
         Form {
-            Picker("Rodzaj nieruchomości", selection: $propertyType) {
-                ForEach(propertyTypes, id: \.self) {
+            Picker("Rodzaj nieruchomości", selection: $vm.propertyType) {
+                ForEach(vm.propertyTypes, id: \.self) {
                     Text($0)
                 }
             }
             
             Section("Dane adresowe") {
-                TextField("Ulica", text: $propertyAddressStreet)
+                TextField("Ulica", text: $vm.propertyAddressStreet)
                 
                 HStack {
-                    TextField("Nr domu", text: $propertyAddressHouseNumber)
-                    TextField("Nr mieszkania", text: $propertyAddressFlatNumber)
+                    TextField("Nr domu", text: $vm.propertyAddressHouseNumber)
+                    TextField("Nr mieszkania", text: $vm.propertyAddressFlatNumber)
                 }
                 
-                TextField("Kod pocztowy", text: $propertyAddressPostalCode)
-                TextField("Miejscowość", text: $propertyAddressCity)
+                TextField("Kod pocztowy", text: $vm.propertyAddressPostalCode)
+                TextField("Miejscowość", text: $vm.propertyAddressCity)
             }
             
-            TextField("Nazwa nieruchomości", text: $propertyName)
+            TextField("Nazwa nieruchomości", text: $vm.propertyName)
             
             // Picker symbolu
             Section("Symbol") {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 5) {
-                        ForEach(propertySymbols, id: \.self) { symbol in
+                        ForEach(vm.propertySymbols, id: \.self) { symbol in
                             Button {
-                                propertySymbol = symbol
+                                vm.selectSymbol(symbol)
                             } label: {
                                 Image(systemName: symbol)
                                     .font(.title)
-                                    .foregroundStyle(propertyColor)
+                                    .foregroundStyle(vm.selectedColor.color)
                                     .frame(width: 70, height: 70)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 10)
                                             .strokeBorder(
-                                                Color.primary.opacity(symbol == propertySymbol ? 0.9 : 0.0),
-                                                lineWidth: symbol == propertySymbol ? 3 : 1
+                                                Color.primary.opacity(symbol == vm.propertySymbolName ? 0.9 : 0.0),
+                                                lineWidth: symbol == vm.propertySymbolName ? 3 : 1
                                             )
                                     )
-                                    .shadow(color: Color.black.opacity(symbol == propertySymbol ? 0.2 : 0.0), radius: 4, x: 0, y: 2)
+                                    .shadow(color: Color.black.opacity(symbol == vm.propertySymbolName ? 0.2 : 0.0), radius: 4, x: 0, y: 2)
                             }
                             .buttonStyle(.plain)
                         }
                     }
-                    
                 }
                 
                 // Picker koloru
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
-                        ForEach(PropertyColor.allCases, id: \.self) { colorCase in
+                        ForEach(vm.colors, id: \.self) { color in
                             Button {
-                                colorSelection = colorCase
+                                vm.selectColor(color)
                             } label: {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(colorCase.color)
+                                    .fill(color.color)
                                     .frame(width: 30, height: 30)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 10)
                                             .strokeBorder(
-                                                Color.primary.opacity(colorCase == colorSelection ? 0.9 : 0.2),
-                                                lineWidth: colorCase == colorSelection ? 3 : 1
+                                                Color.primary.opacity(vm.selectedColor == color ? 0.9 : 0.2),
+                                                lineWidth: vm.selectedColor == color ? 3 : 1
                                             )
                                     )
-                                    .shadow(color: Color.black.opacity(colorCase == colorSelection ? 0.2 : 0.0), radius: 4, x: 0, y: 2)
+                                    .shadow(color: Color.black.opacity(vm.selectedColor == color ? 0.2 : 0.0), radius: 4, x: 0, y: 2)
                             }
                             .buttonStyle(.plain)
                         }
@@ -105,28 +88,19 @@ struct AddPropertyView: View {
                 .scrollBounceBehavior(.basedOnSize)
             }
         }
+        .onAppear {
+            vm.onAppear()
+        }
         .navigationTitle("Dodaj nieruchomość")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Zapisz") {
-                    let newProperty = Property(
-                        propertyName: propertyName,
-                        propertyType: propertyType,
-                        propertyAddressStreet: propertyAddressStreet,
-                        propertyAddressHouseNumber: propertyAddressHouseNumber,
-                        propertyAddressFlatNumber: propertyAddressFlatNumber,
-                        propertyAddressPostalCode: propertyAddressPostalCode,
-                        propertyAddressCity: propertyAddressCity,
-                        propertyColor: colorSelection,
-                        propertySymbol: propertySymbol
-                    )
-                    modelContext.insert(newProperty)
-                    // try? modelContext.save()
+                    vm.save(in: modelContext)
                     dismiss()
                 }
-                .disabled(propertyName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                .disabled(vm.isSaveDisabled)
             }
         }
     }
@@ -134,7 +108,6 @@ struct AddPropertyView: View {
 
 #Preview {
     NavigationStack {
-        AddPropertyView()
+        AddPropertyView(vm: AddPropertyViewModel())
     }
 }
-

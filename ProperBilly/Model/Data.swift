@@ -18,12 +18,8 @@ class Property {
     var propertyAddressFlatNumber: String
     var propertyAddressPostalCode: String
     var propertyAddressCity: String
-    var propertyColor: PropertyColor
-    var propertySymbol: String
-
-    var color: Color {
-        propertyColor.color
-    }
+    var propertyColorName: String
+    var propertySymbolName: String
     
     init(
         propertyName: String,
@@ -33,8 +29,8 @@ class Property {
         propertyAddressFlatNumber: String,
         propertyAddressPostalCode: String,
         propertyAddressCity: String,
-        propertyColor: PropertyColor,
-        propertySymbol: String
+        propertyColorName: String,
+        propertySymbolName: String
     ) {
         self.propertyName = propertyName
         self.propertyType = propertyType
@@ -43,25 +39,8 @@ class Property {
         self.propertyAddressFlatNumber = propertyAddressFlatNumber
         self.propertyAddressPostalCode = propertyAddressPostalCode
         self.propertyAddressCity = propertyAddressCity
-        self.propertyColor = propertyColor
-        self.propertySymbol = propertySymbol
-    }
-}
-
-enum PropertyColor: String, CaseIterable, Hashable, Codable {
-    case red, orange, yellow, green, blue, indigo, purple, pink
-    
-    var color: Color {
-        switch self {
-        case .red: return .red
-        case .orange: return .orange
-        case .yellow: return .yellow
-        case .green: return .green
-        case .blue: return .blue
-        case .indigo: return .indigo
-        case .purple: return .purple
-        case .pink: return .pink
-        }
+        self.propertyColorName = propertyColorName
+        self.propertySymbolName = propertySymbolName
     }
 }
 

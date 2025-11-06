@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct ProperBillyApp: App {
@@ -13,5 +14,7 @@ struct ProperBillyApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Property.self)
     }
 }
+
