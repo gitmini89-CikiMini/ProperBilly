@@ -37,8 +37,8 @@ struct AddPropertyView: View {
                 TextField("Nazwa nieruchomości", text: $pvm.propertyName)
             }
             
-            // Picker symbolu
             Section("Symbol") {
+                // Picker symbolu
                 SymbolPickerView(
                     symbols: pvm.propertySymbols,
                     selectedSymbol: pvm.propertySymbolName,

@@ -18,15 +18,19 @@ struct MainView: View {
         NavigationStack {
             List {
                 ForEach(properties) { property in
-                    MainRow(
-                        propertyImage: Image(systemName: property.propertySymbolName),
-                        propertyName: property.propertyName,
-                        propertyType: property.propertyType,
-                        propertyAddressLine_1: mvm.addressLine1(for: property),
-                        propertyAddressLine_2: mvm.addressLine2(for: property),
-                        tenants: property.tenants,
-                        propertyColor: PropertyColor(rawValue: property.propertyColorName)?.color ?? .orange
-                    )
+                    NavigationLink {
+                        PropertyView(property: property)
+                    } label: {
+                        MainRow(
+                            propertyImage: Image(systemName: property.propertySymbolName),
+                            propertyName: property.propertyName,
+                            propertyType: property.propertyType,
+                            propertyAddressLine_1: mvm.addressLine1(for: property),
+                            propertyAddressLine_2: mvm.addressLine2(for: property),
+                            tenants: property.tenants,
+                            propertyColor: PropertyColor(rawValue: property.propertyColorName)?.color ?? .orange
+                        )
+                    }
                     .listRowInsets(EdgeInsets())
                     .listRowSeparator(.hidden)
                 }
