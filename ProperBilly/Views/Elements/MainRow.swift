@@ -13,8 +13,13 @@ struct MainRow: View {
     let propertyType: String
     let propertyAddressLine_1: String
     let propertyAddressLine_2: String
+    let tenants: [Tenant]
     
     let propertyColor: Color
+    
+    private var tenantFirstNames: String {
+        tenants.map { $0.firstName }.joined(separator: ", ")
+    }
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -50,6 +55,15 @@ struct MainRow: View {
                         .foregroundStyle(.black)
                         .bold()
                     
+                    // Imiona najemców (jeśli są)
+                    if !tenants.isEmpty {
+                        Text(tenantFirstNames)
+                            .font(.subheadline)
+                            .foregroundStyle(.black.opacity(0.8))
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                    }
+                    
                     Spacer()
                     
                     VStack(alignment: .leading, spacing: 0) {
@@ -78,6 +92,10 @@ struct MainRow: View {
         propertyType: "Mieszkanie",
         propertyAddressLine_1: "Cudowna 7/99",
         propertyAddressLine_2: "05-500 Piaseczno",
+        tenants: [
+            Tenant(firstName: "Anna", lastName: "Kowalska", phoneNumber: "123456789"),
+            Tenant(firstName: "Piotr", lastName: "Nowak", phoneNumber: "987654321")
+        ],
         propertyColor: Color.green
     )
 }

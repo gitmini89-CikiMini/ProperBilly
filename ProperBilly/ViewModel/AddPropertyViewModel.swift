@@ -15,6 +15,7 @@ final class AddPropertyViewModel {
     var propertyAddressFlatNumber = ""
     var propertyAddressPostalCode = ""
     var propertyAddressCity = ""
+    var tenants = [Tenant]()
     
     // Types
     let propertyTypes = ["Dom", "Mieszkanie", "Garaż", "Komórka lokatorska"]
@@ -62,7 +63,18 @@ final class AddPropertyViewModel {
             propertyColorName: selectedColor.rawValue,
             propertySymbolName: propertySymbolName
         )
+        
+        // Najpierw wstawiamy nieruchomość
         context.insert(newProperty)
+        
+        // Następnie powiązujemy i wstawiamy najemców z formularza
+        for tenant in tenants {
+            tenant.property = newProperty
+            newProperty.tenants.append(tenant)
+            context.insert(tenant)
+        }
+        
         try? context.save()
     }
 }
+

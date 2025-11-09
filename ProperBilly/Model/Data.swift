@@ -20,6 +20,7 @@ class Property {
     var propertyAddressCity: String
     var propertyColorName: String
     var propertySymbolName: String
+    @Relationship(deleteRule: .cascade) var tenants: [Tenant] = []
     
     init(
         propertyName: String,
@@ -44,3 +45,19 @@ class Property {
     }
 }
 
+@Model
+class Tenant {
+    var property: Property?
+    var firstName: String
+    var secondName: String?
+    var lastName: String
+    var phoneNumber: String
+    
+    init(property: Property? = nil, firstName: String, secondName: String? = nil, lastName: String, phoneNumber: String) {
+        self.property = property
+        self.firstName = firstName
+        self.secondName = secondName
+        self.lastName = lastName
+        self.phoneNumber = phoneNumber
+    }
+}

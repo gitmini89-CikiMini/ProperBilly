@@ -12,7 +12,7 @@ struct MainView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Property.propertyType) private var properties: [Property]
     
-    @State private var vm = MainViewModel()
+    @State private var mvm = MainViewModel()
 
     var body: some View {
         NavigationStack {
@@ -22,15 +22,16 @@ struct MainView: View {
                         propertyImage: Image(systemName: property.propertySymbolName),
                         propertyName: property.propertyName,
                         propertyType: property.propertyType,
-                        propertyAddressLine_1: vm.addressLine1(for: property),
-                        propertyAddressLine_2: vm.addressLine2(for: property),
+                        propertyAddressLine_1: mvm.addressLine1(for: property),
+                        propertyAddressLine_2: mvm.addressLine2(for: property),
+                        tenants: property.tenants,
                         propertyColor: PropertyColor(rawValue: property.propertyColorName)?.color ?? .orange
                     )
                     .listRowInsets(EdgeInsets())
                     .listRowSeparator(.hidden)
                 }
                 .onDelete { offsets in
-                    vm.delete(at: offsets, from: properties, in: modelContext)
+                    mvm.delete(at: offsets, from: properties, in: modelContext)
                 }
             }
             .listStyle(.plain)
@@ -39,7 +40,7 @@ struct MainView: View {
             .toolbar {
                 ToolbarItemGroup {
                     NavigationLink {
-                        AddPropertyView(vm: AddPropertyViewModel())
+                        AddPropertyView(pvm: AddPropertyViewModel())
                     } label: {
                         Image(systemName: "plus")
                     }
