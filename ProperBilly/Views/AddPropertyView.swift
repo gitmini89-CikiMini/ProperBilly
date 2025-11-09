@@ -64,6 +64,29 @@ struct AddPropertyView: View {
             } label: {
                 Text("Dodaj najemcę")
             }
+            // Widok poszczególnych dodanych najemców.
+            Section("Najemcy") {
+                if pvm.tenants.isEmpty {
+                    ContentUnavailableView("Brak dodanych najemców", systemImage: "person.2.slash")
+                } else {
+                    ForEach(pvm.tenants) { tenant in
+                        VStack(alignment: .leading, spacing: 4) {
+                            let second = tenant.secondName?.isEmpty == false ? " \(tenant.secondName!)" : ""
+                            Text("\(tenant.firstName)\(second) \(tenant.lastName)")
+                                .font(.headline)
+                            if !tenant.phoneNumber.isEmpty {
+                                Text(tenant.phoneNumber)
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                    .onDelete { indexSet in
+                        pvm.tenants.remove(atOffsets: indexSet)
+                    }
+                }
+            }
+            
         }
         .onAppear {
             pvm.onAppear()
@@ -80,6 +103,8 @@ struct AddPropertyView: View {
                 .disabled(pvm.isSaveDisabled)
             }
         }
+        
+        //Albo tutaj widok najemców w List -> ForEach
     }
 }
 
