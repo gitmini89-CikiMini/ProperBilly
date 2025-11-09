@@ -93,8 +93,8 @@ struct MainRow: View {
         propertyAddressLine_1: "Cudowna 7/99",
         propertyAddressLine_2: "05-500 Piaseczno",
         tenants: [
-            Tenant(firstName: "Anna", lastName: "Kowalska", phoneNumber: "123456789"),
-            Tenant(firstName: "Piotr", lastName: "Nowak", phoneNumber: "987654321")
+            Tenant(firstName: "Anna", secondName: "Basia", lastName: "Kowalska", phoneNumber: "123456789"),
+            Tenant(firstName: "Piotr", secondName: "Janek", lastName: "Nowak", phoneNumber: "987654321")
         ],
         propertyColor: Color.green
     )

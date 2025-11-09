@@ -49,11 +49,11 @@ class Property {
 class Tenant {
     var property: Property?
     var firstName: String
-    var secondName: String?
+    var secondName: String
     var lastName: String
     var phoneNumber: String
     
-    init(property: Property? = nil, firstName: String, secondName: String? = nil, lastName: String, phoneNumber: String) {
+    init(property: Property? = nil, firstName: String, secondName: String, lastName: String, phoneNumber: String) {
         self.property = property
         self.firstName = firstName
         self.secondName = secondName

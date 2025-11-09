@@ -71,8 +71,7 @@ struct AddPropertyView: View {
                 } else {
                     ForEach(pvm.tenants) { tenant in
                         VStack(alignment: .leading, spacing: 4) {
-                            let second = tenant.secondName?.isEmpty == false ? " \(tenant.secondName!)" : ""
-                            Text("\(tenant.firstName)\(second) \(tenant.lastName)")
+                            Text("\(tenant.firstName) \(tenant.secondName) \(tenant.lastName)")
                                 .font(.headline)
                             if !tenant.phoneNumber.isEmpty {
                                 Text(tenant.phoneNumber)
